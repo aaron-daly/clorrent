@@ -1,36 +1,23 @@
 # clorrent
 
-FIXME: description
+A simple Clojure torrent client.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Clone this repository
+
+    $ git clone git@github.com:aaron-daly/clorrent.git
+    
+Install dependencies
+
+    $ lein deps
 
 ## Usage
 
-FIXME: explanation
+Run the app providing the path to your torrent file
 
-    $ java -jar clorrent-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
+    $ lein run $PATH_TO_TORRENT_FILE
 
 ## Examples
 
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2018 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+    $ lein run resources/big-buck-bunny.torrent

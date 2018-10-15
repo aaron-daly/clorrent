@@ -1,7 +1,15 @@
 (ns clorrent.core
-  (:gen-class))
+  (:gen-class)
+  (:import (java.io FileNotFoundException)))
 
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
-  (println "Hello, World!"))
+  (try
+    (-> args
+        (first)
+        (slurp)
+        (println))
+    (catch FileNotFoundException _
+      (println "Woops, we couldn't find that file!"))
+    (catch Exception _
+      (println "Oh no, something has gone horribly wrong! :("))))
