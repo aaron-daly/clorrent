@@ -20,8 +20,10 @@
          (extract-port-from-address "http://127.0.0.1:1337"))))
 
 (deftest create-socket-test
-  (is (= DatagramSocket
-         (type (create-socket 1337))))
+  (let [socket (create-socket 1337)]
+    (is (= DatagramSocket
+           (type socket)))
+    (close-socket socket))
   (is (thrown?
         IllegalArgumentException
         (create-socket ""))))
@@ -35,3 +37,19 @@
     (is (false? (.isClosed socket)))
     (close-socket socket)
     (is (true? (.isClosed socket)))))
+
+(deftest create-receiver-test
+  (let [socket (create-socket 1448)
+        receiver (create-receiver socket println)]
+    (is (not (nil? receiver)))
+    (close-socket socket)))
+
+(deftest close-receiver-test
+  (let [socket (create-socket 1448)
+        receiver (create-receiver socket println)]
+    (is (true? (close-receiver receiver)))
+    (close-socket socket))
+  (is (thrown?
+        NullPointerException
+        IllegalArgumentException
+        (close-receiver nil))))
